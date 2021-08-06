@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <input type="text" [(ngModel)] = "filteredStatus" name = "filteredStatus">
+      <br><br>
+      <button class="btn btn-primary" (click) = "onAddServer()"> add server </button>
+      <br>
+      <h2>App status: {{appStatus | async}}</h2>
+      <hr>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let server of servers | filter:filteredStatus:'status'"
+          [ngClass]="getStatusClasses(server)"> <!-- diretiva de atributo: altera o comportamento do elemento -->
+          <span
+            class="badge">
+            {{ server.status }}
+          </span>
+          <strong>{{ server.name | shorten:15 }}</strong> | 
+          {{ server.instanceType | uppercase }} | 
+          {{ server.started | date:'fullDate' | uppercase }}
+        </li> <!-- Sempre é analisado da esquerda para a direita os pipes. Isso é importante. -->
+      </ul>
+    </div>
+  </div>
+</div>

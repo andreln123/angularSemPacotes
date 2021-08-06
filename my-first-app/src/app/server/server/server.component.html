@@ -1,0 +1,23 @@
+<p [ngStyle] = "{backgroundColor: getColor()}" [ngClass] = "{class: definirClasse()}"> Servidor com id {{serverId}} está {{getServerStatus()}}.</p>
+<input type="text" class="form-control" (input) = "atualizarServidor($event)"/>
+<input type="text" class="form-control" [(ngModel)] = "nameServer"/>
+<button class="btn btn-primary" [disabled] = "!permitirNovoServidor" (click) = "criarServidor()">
+    Adicionar servidor
+</button>&nbsp;
+<button class="btn btn-primary" (click) = "inserirItem()">
+    Inserir item à lista
+</button>
+<p> {{ serverCreationStatus }} </p>
+<p> {{ nameServer }} </p>
+<p *ngIf = "servidorCriado"> Servidor criado com sucesso ... </p>
+
+<hr><hr>
+<input type="text" class="form-control" [(ngModel)] = "nomeServidor"/>
+<button class="btn btn-primary" [disabled] = "nomeServidor === ''">
+    Adicionar servidor
+</button>
+
+<hr><hr>
+<ul>
+    <li *ngFor = "let obj of lista; let i = index"> {{i}} - {{obj.nome}} </li>
+</ul>
